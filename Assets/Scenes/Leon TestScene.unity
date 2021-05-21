@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 747981339}
   - component: {fileID: 747981338}
   - component: {fileID: 747981337}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92470,7 +92470,8 @@ MonoBehaviour:
   checkRadius: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
+  jumpsAmount: 0
 --- !u!1 &1512050951
 GameObject:
   m_ObjectHideFlags: 0

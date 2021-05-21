@@ -9,7 +9,7 @@ public class PlayerController2 : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    //stuff for double/multi jumps
+    //stuff for double/multi jumps, which aint working yet
     private bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
