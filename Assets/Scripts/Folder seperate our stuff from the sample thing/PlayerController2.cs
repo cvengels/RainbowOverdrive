@@ -15,10 +15,12 @@ public class PlayerController2 : MonoBehaviour
     public float checkRadius;
     public LayerMask whatIsGround;
 
+    private int jumps;
     public int jumpsAmount;
 
     void Start()
     {
+        jumps = jumpsAmount;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -30,10 +32,20 @@ public class PlayerController2 : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-
-        if (Input.GetButton("Jump")) //aint really working like this, sort of a placeholder
+        if(isGrounded == true)
         {
-        transform.position += new Vector3(0, 2, 0) * Time.deltaTime * JumpVelocity;
+            jumps = jumpsAmount;
+        }
+
+        if (Input.GetButtonDown("Jump") && jumps > 0)
+        {
+            rb.velocity = Vector2.up * JumpVelocity;
+            jumps --;
+        }
+
+        else if(Input.GetButtonDown("Jump") && jumps == 0 && isGrounded == true)
+        {
+            rb.velocity = Vector2.up * JumpVelocity;
         }
 
     }
