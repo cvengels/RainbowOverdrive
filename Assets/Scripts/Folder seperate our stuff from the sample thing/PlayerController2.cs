@@ -9,18 +9,18 @@ public class PlayerController2 : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    //stuff for double/multi jumps, which aint working yet
+    //stuff for multi jumps
     private bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
 
-    private int jumps;
-    public int jumpsAmount;
+    private int jumpsLeft;
+    public int jumpsMax;
 
     void Start()
     {
-        jumps = jumpsAmount;
+        jumpsLeft = jumpsMax;
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -32,21 +32,23 @@ public class PlayerController2 : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
 
-        if(isGrounded == true)
+        if(isGrounded == true) //restores jumps to max on ground contact
         {
-            jumps = jumpsAmount;
+            jumpsLeft = jumpsMax;
         }
 
-        if (Input.GetButtonDown("Jump") && jumps > 0)
+        if (Input.GetButtonDown("Jump") && jumpsLeft > 0)
         {
             rb.velocity = Vector2.up * JumpVelocity;
-            jumps --;
+            jumpsLeft --;
         }
 
-        else if(Input.GetButtonDown("Jump") && jumps == 0 && isGrounded == true)
+        else if(Input.GetButtonDown("Jump") && jumpsLeft == 0 && isGrounded == true)
         {
             rb.velocity = Vector2.up * JumpVelocity;
         }
+
+        //idea for a dash move: uses up jumps -> moves distance fast, possibly with i-frames
 
     }
 }
